@@ -35,7 +35,12 @@ public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback, Hig
     Button bMap1;
 
     @BindView(R.id.code)
-    HighlightJsView highlightJsView;
+    HighlightJsView hl;
+    //private boolean enableLineNumbers;
+
+    @BindView(R.id.code_xml)
+    HighlightJsView hlXML;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,22 +52,38 @@ public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback, Hig
                 .findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
 
-        highlightJsView.setOnThemeChangedListener(this);
-        //change theme and set language to auto detect
-        highlightJsView.setTheme(Theme.ANDROID_STUDIO);
-        highlightJsView.setHighlightLanguage(Language.AUTO_DETECT);
-        //load the source (can be loaded by String, File or URL)
-       // highlightJsView.setSource(getString(R.string.listing_java));
+        configHl();
 
-        URL filenya = null;
+
+
+        URL java1 = null;
         try {
-            filenya = new URL("https://rawgit.com/kucingapes/CilacapIntegrateTourism/master/app/src/main/java/com/kucingapes/utsman/cilacaptourism/About.java");
+            java1 = new URL("https://rawgit.com/kucingapes/TutorialGMap/master/code_file/maps_1.java");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        hl.setSource(java1);
 
-       highlightJsView.setSource(filenya);
+
+        URL codexml = null;
+        try {
+            codexml = new URL("https://rawgit.com/kucingapes/TutorialGMap/master/code_file/maps_1.xml");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        hlXML.setSource(codexml);
     }
+
+    private void configHl() {
+        hl.setOnThemeChangedListener(this);
+        hl.setTheme(Theme.ANDROID_STUDIO);
+        hl.setHighlightLanguage(Language.AUTO_DETECT);
+        hlXML.setOnThemeChangedListener(this);
+        hlXML.setTheme(Theme.ANDROID_STUDIO);
+        hlXML.setHighlightLanguage(Language.AUTO_DETECT);
+        onShowLineNumbersToggled(true);
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -72,7 +93,6 @@ public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback, Hig
         } else if (layoutCode_1.getVisibility() == View.GONE) {
             super.onBackPressed();
         }
-        //finish();
     }
 
     @Override
@@ -89,4 +109,12 @@ public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback, Hig
     public void onThemeChanged(@NonNull Theme theme) {
 
     }
+
+    private void onShowLineNumbersToggled(boolean enableLineNumbers) {
+        hl.setShowLineNumbers(enableLineNumbers);
+        hl.refresh();
+        hlXML.setShowLineNumbers(enableLineNumbers);
+        hlXML.refresh();
+    }
+
 }
