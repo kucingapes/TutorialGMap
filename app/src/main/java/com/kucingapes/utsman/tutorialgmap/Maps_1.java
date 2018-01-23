@@ -1,45 +1,53 @@
 package com.kucingapes.utsman.tutorialgmap;
 
-import android.net.Uri;
-import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
-import android.webkit.URLUtil;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.pddstudio.highlightjs.HighlightJsView;
-import com.pddstudio.highlightjs.models.Language;
-import com.pddstudio.highlightjs.models.Theme;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.sql.RowSet;
+import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.kbiakov.codeview.CodeView;
+import io.github.kbiakov.codeview.adapters.Options;
 
-public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback, HighlightJsView.OnThemeChangedListener {
+public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     @BindView(R.id.codemap1)
-    RelativeLayout layoutCode_1;
+    ScrollView layoutCode_1;
 
     @BindView(R.id.bmap1)
     Button bMap1;
 
-    @BindView(R.id.code)
-    HighlightJsView hl;
-    //private boolean enableLineNumbers;
+    @BindView(R.id.code_view)
+    CodeView codeView;
 
-    @BindView(R.id.code_xml)
-    HighlightJsView hlXML;
+    @BindView(R.id.code_view_xml)
+    CodeView codeViewXML;
+
+    @BindView(R.id.textXML)
+    TextView textXML;
+
+    @BindView(R.id.textJava)
+    TextView textJava;
+
+    @BindView(R.id.card_xml)
+    CardView cardXML;
+
 
 
     @Override
@@ -47,42 +55,61 @@ public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback, Hig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_1);
         ButterKnife.bind(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
 
-        configHl();
+////        TextView.LayoutParams card = (RelativeLayout.LayoutParams) cardJava.getLayoutParams();
+////        //card.setMargins(0,0,0,3);
+////        card.addRule(RelativeLayout.BELOW, R.id.card_xml);
+//        cardJava.setLayoutParams(card);
 
 
 
-        URL java1 = null;
-        try {
-            java1 = new URL("https://rawgit.com/kucingapes/TutorialGMap/master/code_file/maps_1.java");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        hl.setSource(java1);
+        textXML.setText(getString(R.string.penjelasan_xml));
+        textJava.setText(getString(R.string.penjelasan_java));
 
+        codeView.setOptions(Options.Default.get(this)
+                .withLanguage("java")
+                .withCode("public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback {\n" +
+                        "\n" +
+                        "    private GoogleMap mMap;\n" +
+                        "\n" +
+                        "    @Override\n" +
+                        "    protected void onCreate(Bundle savedInstanceState) {\n" +
+                        "        super.onCreate(savedInstanceState);\n" +
+                        "        setContentView(R.layout.activity_maps_1);\n" +
+                        "    \n" +
+                        "       /* menambahkan map fragment pada onCreate*/\n" +
+                        "        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()\n" +
+                        "                .findFragmentById(R.id.map1);\n" +
+                        "        mapFragment.getMapAsync(this);\n" +
+                        "    }\n" +
+                        "\n" +
+                        "\n" +
+                        "    /*memanggil google map pada fragment*/\n" +
+                        "    @Override\n" +
+                        "    public void onMapReady(GoogleMap googleMap) {\n" +
+                        "        mMap = googleMap;\n" +
+                        "    }\n" +
+                        "\n" +
+                        "}"));
 
-        URL codexml = null;
-        try {
-            codexml = new URL("https://rawgit.com/kucingapes/TutorialGMap/master/code_file/maps_1.xml");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        hlXML.setSource(codexml);
+        codeViewXML.setOptions(Options.Default.get(this)
+                .withLanguage("xml")
+                .withCode("<fragment xmlns:android=\"http://schemas.android.com/apk/res/android\"\n" +
+                        "  xmlns:tools=\"http://schemas.android.com/tools\"\n" +
+                        "  android:layout_width=\"match_parent\"\n" +
+                        "  android:layout_height=\"0dp\"\n" +
+                        "  android:id=\"@+id/maps\"\n" +
+                        "  tools:context=\".Maps\"\n" +
+                        "  android:layout_weight=\"2\"\n" +
+                        "  class=\"com.google.android.gms.maps.SupportMapFragment\" />"));
     }
 
-    private void configHl() {
-        hl.setOnThemeChangedListener(this);
-        hl.setTheme(Theme.ANDROID_STUDIO);
-        hl.setHighlightLanguage(Language.AUTO_DETECT);
-        hlXML.setOnThemeChangedListener(this);
-        hlXML.setTheme(Theme.ANDROID_STUDIO);
-        hlXML.setHighlightLanguage(Language.AUTO_DETECT);
-        onShowLineNumbersToggled(true);
-    }
 
 
     @Override
@@ -103,18 +130,6 @@ public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback, Hig
     public void Map1code(View view) {
         layoutCode_1.setVisibility(View.VISIBLE);
         bMap1.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onThemeChanged(@NonNull Theme theme) {
-
-    }
-
-    private void onShowLineNumbersToggled(boolean enableLineNumbers) {
-        hl.setShowLineNumbers(enableLineNumbers);
-        hl.refresh();
-        hlXML.setShowLineNumbers(enableLineNumbers);
-        hlXML.refresh();
     }
 
 }

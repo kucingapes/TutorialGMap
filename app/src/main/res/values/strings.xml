@@ -9,30 +9,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
-    <string name="listing_java">
-public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback {\n
-\n
-    private GoogleMap mMap;\n
-\n
-    @Override\n
-    protected void onCreate(Bundle savedInstanceState) {\n
-        super.onCreate(savedInstanceState);\n
-        setContentView(R.layout.activity_maps_1);\n
-\n
-\n
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()\n
-                .findFragmentById(R.id.map1);\n
-        mapFragment.getMapAsync(this);\n
-\n
-\n
-    @Override\n
-    public void onMapReady(GoogleMap googleMap) {\n
-        mMap = googleMap;\n
-    }\n
-\n
-}
-
-    </string>
+    <string name="penjelasan_xml">Tambahkan fragment maps pada xml</string>
+    <string name="penjelasan_java">Kode Lengkap pada MainActivity</string>
 
 </resources>

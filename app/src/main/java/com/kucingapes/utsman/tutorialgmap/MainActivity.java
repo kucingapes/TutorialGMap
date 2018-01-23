@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity
             Intent maps1 = new Intent(MainActivity.this, Maps_1.class);
             startActivity(maps1);
         } else if (id == R.id.nav_gallery) {
+            Intent maps1 = new Intent(MainActivity.this, Maps_2.class);
+            startActivity(maps1);
 
         } else if (id == R.id.nav_slideshow) {
 
