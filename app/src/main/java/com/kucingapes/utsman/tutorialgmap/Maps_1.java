@@ -4,19 +4,15 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-
-import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,27 +29,27 @@ public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback {
     @BindView(R.id.bmap1)
     Button bMap1;
 
-    @BindView(R.id.code_view)
+    @BindView(R.id.code_view_dua)
     CodeView codeView;
 
-    @BindView(R.id.code_view_xml)
+    @BindView(R.id.code_view_satu)
     CodeView codeViewXML;
 
-    @BindView(R.id.textXML)
-    TextView textXML;
+    @BindView(R.id.textSatu)
+    TextView textSatu;
 
-    @BindView(R.id.textJava)
-    TextView textJava;
+    @BindView(R.id.textDua)
+    TextView textDua;
 
-    @BindView(R.id.card_xml)
-    CardView cardXML;
+    @BindView(R.id.card_satu)
+    CardView cardSatu;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps_1);
+        setContentView(R.layout.activity_maps);
         ButterKnife.bind(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -62,35 +58,33 @@ public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
 
-////        TextView.LayoutParams card = (RelativeLayout.LayoutParams) cardJava.getLayoutParams();
-////        //card.setMargins(0,0,0,3);
-////        card.addRule(RelativeLayout.BELOW, R.id.card_xml);
-//        cardJava.setLayoutParams(card);
+        isiCode();
 
+    }
 
-
-        textXML.setText(getString(R.string.penjelasan_xml));
-        textJava.setText(getString(R.string.penjelasan_java));
+    private void isiCode() {
+        textSatu.setText(getString(R.string.penjelasan_xml));
+        textDua.setText(getString(R.string.penjelasan_java));
 
         codeView.setOptions(Options.Default.get(this)
                 .withLanguage("java")
-                .withCode("public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback {\n" +
+                .withCode("public class Maps extends AppCompatActivity implements OnMapReadyCallback {\n" +
                         "\n" +
                         "    private GoogleMap mMap;\n" +
                         "\n" +
                         "    @Override\n" +
                         "    protected void onCreate(Bundle savedInstanceState) {\n" +
                         "        super.onCreate(savedInstanceState);\n" +
-                        "        setContentView(R.layout.activity_maps_1);\n" +
+                        "        setContentView(R.layout.activity_maps);\n" +
                         "    \n" +
-                        "       /* menambahkan map fragment pada onCreate*/\n" +
+                        "       /* Menambahkan map fragment pada onCreate */\n" +
                         "        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()\n" +
                         "                .findFragmentById(R.id.map1);\n" +
                         "        mapFragment.getMapAsync(this);\n" +
                         "    }\n" +
                         "\n" +
                         "\n" +
-                        "    /*memanggil google map pada fragment*/\n" +
+                        "    /* Memanggil google map pada fragment */\n" +
                         "    @Override\n" +
                         "    public void onMapReady(GoogleMap googleMap) {\n" +
                         "        mMap = googleMap;\n" +
@@ -111,7 +105,6 @@ public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback {
     }
 
 
-
     @Override
     public void onBackPressed() {
         if (layoutCode_1.getVisibility() == View.VISIBLE) {
@@ -119,6 +112,7 @@ public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback {
             bMap1.setVisibility(View.VISIBLE);
         } else if (layoutCode_1.getVisibility() == View.GONE) {
             super.onBackPressed();
+            recreate();
         }
     }
 
@@ -132,4 +126,18 @@ public class Maps_1 extends AppCompatActivity implements OnMapReadyCallback {
         bMap1.setVisibility(View.GONE);
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
+
+

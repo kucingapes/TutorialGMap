@@ -5,33 +5,54 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_maps_1"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Menampilkan Maps" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_api"
+            android:icon="@drawable/ic_action_key"
+            android:title="API Maps Google" />
     </group>
 
-    <item android:title="Communicate">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_maps_1"
+            android:icon="@drawable/ic_map"
+            android:title="Menampilkan Maps" />
+    </group>
+
+    <item android:title="Marker">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_marker1"
+                    android:icon="@drawable/ic_action_location"
+                    android:title="Menambahkan Marker" />
+                <item
+                    android:id="@+id/nav_marker2"
+                    android:icon="@drawable/ic_action_location"
+                    android:title="Multi Marker" />
+                <item
+                    android:id="@+id/nav_marker3"
+                    android:icon="@drawable/ic_action_location"
+                    android:title="Kustom Marker" />
+                <item
+                    android:id="@+id/nav_marker4"
+                    android:icon="@drawable/ic_action_location"
+                    android:title="Event pada Marker"/>
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Info Window">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_info1"
+                    android:icon="@drawable/ic_action_window"
+                    android:title="Kustom InfoWindow" />
+                <item
+                    android:id="@+id/nav_info2"
+                    android:icon="@drawable/ic_action_window"
+                    android:title="Event pada InfoWindow" />
+
+            </group>
         </menu>
     </item>
 

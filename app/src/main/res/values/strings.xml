@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Tutorial GMap</string>
+    <string name="app_name">Tutorial Google Maps - Dasar</string>
+    <string name="app_name_atas">Tutorial Google Maps</string>
+    <string name="app_name_bawah">Dasar</string>
 
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
         AIzaSyA4sCQwoSkHnKgB0RFkmQM3AN6cuiPE8Fg
@@ -11,5 +13,7 @@
     <string name="action_settings">Settings</string>
     <string name="penjelasan_xml">Tambahkan fragment maps pada xml</string>
     <string name="penjelasan_java">Kode Lengkap pada MainActivity</string>
+    <string name="toastInfoWindow">Ketuk marker untuk menampilkan InfoWindow</string>
+    <string name="pembukaan">Pembukaan</string>
 
 </resources>
