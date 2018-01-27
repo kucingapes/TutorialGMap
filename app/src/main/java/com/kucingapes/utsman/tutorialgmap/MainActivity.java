@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_info2) {
             Intent infowindow2 = new Intent(MainActivity.this, InfoWindow_2.class);
             startActivity(infowindow2);
-            Toast.makeText(getApplicationContext(), "Sentuh marker untuk menampilkan info window", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Sentuh info window untuk menampilkan evemt toast", Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_api) {
             Intent api = new Intent(MainActivity.this, API.class);
